@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8roouqidhknf"]
+
+[ext_resource type="Texture2D" uid="uid://5ih8rudfsslt" path="res://art/blocks/flip_orb.png" id="1_vqfrp"]
+[ext_resource type="Script" path="res://scripts/spinner.gd" id="2_nvc3a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bhbh"]
+size = Vector2(110, 110)
+
+[node name="flip_orb" type="Area2D" groups=["flip_orb", "orb"]]
+collision_layer = 2
+collision_mask = 2
+input_pickable = false
+script = ExtResource("2_nvc3a")
+speed = 60.0
+
+[node name="texture" type="Sprite2D" parent="."]
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_vqfrp")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3bhbh")
+debug_color = Color(0, 1, 0, 0.784314)

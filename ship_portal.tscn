@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxs7wy3d17rls"]
+
+[ext_resource type="Texture2D" uid="uid://bxxbf7acrueso" path="res://art/blocks/gamemode_portals.png" id="1_vfoy7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2252"]
+size = Vector2(94, 264)
+
+[node name="ship_portal" type="Area2D" groups=["portal", "ship_portal"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="layer_top" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_vfoy7")
+hframes = 4
+vframes = 4
+frame = 2
+
+[node name="layer_bottom" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_vfoy7")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p2252")
+debug_color = Color(0, 1, 0, 0.784314)

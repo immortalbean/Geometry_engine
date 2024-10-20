@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ymmfgkaoox6q"]
+
+[ext_resource type="Texture2D" uid="uid://dud3wjatv8nx0" path="res://art/blocks/hop_orb.png" id="1_n7lmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bhbh"]
+size = Vector2(110, 110)
+
+[node name="hop_orb" type="Area2D" groups=["hop_orb", "orb"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HopOrb" type="Sprite2D" parent="."]
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_n7lmh")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3bhbh")
+debug_color = Color(0, 1, 0, 0.784314)

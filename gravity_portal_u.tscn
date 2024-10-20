@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl8fea5j06ahb"]
+
+[ext_resource type="Texture2D" uid="uid://hhic11jvefj6" path="res://art/blocks/gravity_portal_u.png" id="1_ym6vx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2252"]
+size = Vector2(94, 264)
+
+[node name="gravity_portal_u" type="Area2D" groups=["gravity_portal_u", "portal"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="layer_top" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_ym6vx")
+hframes = 2
+
+[node name="layer_bottom" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_ym6vx")
+hframes = 2
+frame = 1
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p2252")
+debug_color = Color(0, 1, 0, 0.784314)

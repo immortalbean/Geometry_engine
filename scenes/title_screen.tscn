@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://wtecqnu1fpd2"]
+
+[ext_resource type="Texture2D" uid="uid://2y2svl1t54gh" path="res://art/blocks/background.png" id="1_khm0l"]
+[ext_resource type="Texture2D" uid="uid://635a21woh0gr" path="res://art/UI/title.png" id="2_d7tch"]
+[ext_resource type="Script" path="res://scripts/button_behavior/level_selector.gd" id="2_tf1uh"]
+[ext_resource type="Script" path="res://scripts/float.gd" id="3_cux8w"]
+[ext_resource type="Texture2D" uid="uid://cmbwqr483uqnk" path="res://art/UI/button1.png" id="5_3k5xk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ase3q"]
+size = Vector2(224, 224)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="background" type="Node2D" parent="."]
+modulate = Color(0, 0.45098, 0.866667, 1)
+
+[node name="sprite1" type="Sprite2D" parent="background"]
+position = Vector2(0, 360)
+scale = Vector2(8, 8)
+texture = ExtResource("1_khm0l")
+
+[node name="sprite2" type="Sprite2D" parent="background"]
+position = Vector2(1024, 360)
+scale = Vector2(8, 8)
+texture = ExtResource("1_khm0l")
+
+[node name="play_button" type="Area2D" parent="."]
+position = Vector2(640, 400)
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_tf1uh")
+has_shortcut = true
+shortcut = "p1jump"
+scene = "res://scenes/level_select.tscn"
+
+[node name="sprite" type="Sprite2D" parent="play_button"]
+scale = Vector2(8, 8)
+texture = ExtResource("5_3k5xk")
+
+[node name="hitbox" type="CollisionShape2D" parent="play_button"]
+shape = SubResource("RectangleShape2D_ase3q")
+debug_color = Color(1, 1, 0, 0.784314)
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(640, 127)
+scale = Vector2(8, 8)
+texture = ExtResource("2_d7tch")
+script = ExtResource("3_cux8w")
+speed = 3.0
+amount = 5.0

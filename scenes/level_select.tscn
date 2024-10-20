@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://bu8tnm74ujvjd"]
+
+[ext_resource type="Texture2D" uid="uid://2y2svl1t54gh" path="res://art/blocks/background.png" id="1_nx38o"]
+[ext_resource type="Texture2D" uid="uid://bydio5fmp7exv" path="res://art/UI/levelselect.png" id="2_dsjvy"]
+[ext_resource type="Script" path="res://scripts/button_behavior/level_selector.gd" id="2_hbmne"]
+[ext_resource type="Texture2D" uid="uid://d04el3si24y3x" path="res://art/UI/levelselectbg.png" id="2_t56lm"]
+[ext_resource type="FontFile" uid="uid://dc636rumoio7g" path="res://fonts/VT323.ttf" id="4_81ho2"]
+[ext_resource type="Texture2D" uid="uid://unt1qtqu15aa" path="res://art/UI/button5.png" id="5_h6omy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tcb3p"]
+font_size = 96
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44gpo"]
+size = Vector2(744, 552)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tg1q"]
+size = Vector2(120, 208)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pudij"]
+size = Vector2(120, 208)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_671je"]
+size = Vector2(96, 96)
+
+[node name="level_select" type="Node2D"]
+
+[node name="background" type="Node2D" parent="."]
+modulate = Color(0, 0.45098, 0.866667, 1)
+
+[node name="sprite1" type="Sprite2D" parent="background"]
+position = Vector2(0, 360)
+scale = Vector2(8, 8)
+texture = ExtResource("1_nx38o")
+
+[node name="sprite2" type="Sprite2D" parent="background"]
+position = Vector2(1024, 360)
+scale = Vector2(8, 8)
+texture = ExtResource("1_nx38o")
+
+[node name="level" type="Area2D" parent="."]
+position = Vector2(640, 360)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_hbmne")
+has_shortcut = true
+shortcut = "p1jump"
+scene = "res://scenes/test_level.tscn"
+
+[node name="sprite" type="Sprite2D" parent="level"]
+scale = Vector2(6, 6)
+texture = ExtResource("2_t56lm")
+
+[node name="Label" type="Label" parent="level"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -67.0
+offset_right = 350.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_81ho2")
+text = "Test Level"
+label_settings = SubResource("LabelSettings_tcb3p")
+horizontal_alignment = 1
+
+[node name="hitbox" type="CollisionShape2D" parent="level"]
+shape = SubResource("RectangleShape2D_44gpo")
+
+[node name="button_left" type="Area2D" parent="."]
+position = Vector2(100, 360)
+collision_layer = 4
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="button_left"]
+scale = Vector2(8, 8)
+texture = ExtResource("2_dsjvy")
+hframes = 3
+vframes = 2
+
+[node name="hitbox" type="CollisionShape2D" parent="button_left"]
+position = Vector2(-28, 0)
+shape = SubResource("RectangleShape2D_6tg1q")
+
+[node name="button_right" type="Area2D" parent="."]
+position = Vector2(1180, 360)
+collision_layer = 4
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="button_right"]
+scale = Vector2(8, 8)
+texture = ExtResource("2_dsjvy")
+flip_h = true
+hframes = 3
+vframes = 2
+
+[node name="hitbox" type="CollisionShape2D" parent="button_right"]
+position = Vector2(28, 0)
+shape = SubResource("RectangleShape2D_pudij")
+
+[node name="exit" type="Area2D" parent="."]
+position = Vector2(64, 64)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_hbmne")
+has_shortcut = true
+shortcut = "escape"
+scene = "res://scenes/title_screen.tscn"
+
+[node name="sprite" type="Sprite2D" parent="exit"]
+scale = Vector2(8, 8)
+texture = ExtResource("5_h6omy")
+
+[node name="hitbox" type="CollisionShape2D" parent="exit"]
+shape = SubResource("RectangleShape2D_671je")
+
+[node name="FYI" type="Label" parent="."]
+offset_left = 273.0
+offset_top = 54.0
+offset_right = 1019.0
+offset_bottom = 77.0
+text = "This screen does nothing yet (I might update it, you can make a pull request if you really want to)"

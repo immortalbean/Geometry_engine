@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl42pmshbj15h"]
+
+[ext_resource type="Texture2D" uid="uid://btxs6i5iqov6q" path="res://art/blocks/gravity_orb.png" id="1_ro6vo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bhbh"]
+size = Vector2(110, 110)
+
+[node name="gravity_orb" type="Area2D" groups=["gravity_orb", "orb"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="gravityorb" type="Sprite2D" parent="."]
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_ro6vo")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3bhbh")
+debug_color = Color(0, 1, 0, 0.784314)

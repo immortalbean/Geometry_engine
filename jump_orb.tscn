@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg6feircggu1t"]
+
+[ext_resource type="Texture2D" uid="uid://c6likwlnavcn8" path="res://art/blocks/jump_orb.png" id="1_p847d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bhbh"]
+size = Vector2(110, 110)
+
+[node name="jump_orb" type="Area2D" groups=["jump_orb", "orb"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="JumpOrb" type="Sprite2D" parent="."]
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_p847d")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3bhbh")
+debug_color = Color(0, 1, 0, 0.784314)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://br7o804t1res1"]
+
+[ext_resource type="Texture2D" uid="uid://bxxbf7acrueso" path="res://art/blocks/gamemode_portals.png" id="1_wjg2p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2252"]
+size = Vector2(94, 264)
+
+[node name="cube_portal" type="Area2D" groups=["cube_portal", "portal"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="layer_top" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_wjg2p")
+hframes = 4
+vframes = 4
+
+[node name="layer_bottom" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("1_wjg2p")
+hframes = 4
+vframes = 4
+frame = 1
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p2252")
+debug_color = Color(0, 1, 0, 0.784314)

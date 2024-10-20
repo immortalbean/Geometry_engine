@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://cxmf8i3e0va4j"]
+
+[ext_resource type="PackedScene" uid="uid://dxgj03fgfim5d" path="res://ground.tscn" id="1_4lnu1"]
+[ext_resource type="PackedScene" uid="uid://7tyd7gqaypq7" path="res://player.tscn" id="2_0paty"]
+[ext_resource type="AudioStream" uid="uid://blp87lljltlyd" path="res://sfx/Fingerdash.mp3" id="3_6nbfp"]
+[ext_resource type="PackedScene" uid="uid://bfxilqmnvk6dl" path="res://background.tscn" id="3_h0ikx"]
+[ext_resource type="PackedScene" uid="uid://chmcn4swq0jf2" path="res://pause_layer.tscn" id="4_6godw"]
+[ext_resource type="PackedScene" uid="uid://cayviuludy2g0" path="res://block.tscn" id="6_n0lng"]
+[ext_resource type="PackedScene" uid="uid://b2wd35mr1vbt2" path="res://spike.tscn" id="7_qrqcr"]
+[ext_resource type="PackedScene" uid="uid://dokrayur8ri6r" path="res://saw.tscn" id="8_yedqw"]
+[ext_resource type="PackedScene" uid="uid://bl8fea5j06ahb" path="res://gravity_portal_u.tscn" id="9_fclxd"]
+[ext_resource type="PackedScene" uid="uid://dbdpb35122bg4" path="res://gravity_portal_d.tscn" id="10_513vv"]
+[ext_resource type="PackedScene" uid="uid://ymmfgkaoox6q" path="res://hop_orb.tscn" id="11_6mk27"]
+[ext_resource type="PackedScene" uid="uid://d0iqe5rw1444a" path="res://boost_orb.tscn" id="12_wktwx"]
+
+[node name="fingerdash" type="Node2D"]
+
+[node name="Ground" parent="." instance=ExtResource("1_4lnu1")]
+
+[node name="Player" parent="." instance=ExtResource("2_0paty")]
+
+[node name="music" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("3_6nbfp")
+
+[node name="objects" type="Node" parent="."]
+
+[node name="pause_layer" parent="." instance=ExtResource("4_6godw")]
+
+[node name="background" parent="." instance=ExtResource("3_h0ikx")]
+
+[node name="block" parent="." instance=ExtResource("6_n0lng")]
+position = Vector2(1500, 0)
+
+[node name="block2" parent="." instance=ExtResource("6_n0lng")]
+position = Vector2(1500, -100)
+
+[node name="block3" parent="." instance=ExtResource("6_n0lng")]
+position = Vector2(1800, 0)
+
+[node name="spike" parent="." instance=ExtResource("7_qrqcr")]
+position = Vector2(1800, -100)
+
+[node name="saw" parent="." instance=ExtResource("8_yedqw")]
+position = Vector2(1650, 50)
+
+[node name="gravity_portal_u" parent="." instance=ExtResource("9_fclxd")]
+position = Vector2(2400, -50)
+
+[node name="gravity_portal_d" parent="." instance=ExtResource("10_513vv")]
+position = Vector2(2700, -500)
+
+[node name="gravity_portal_u2" parent="." instance=ExtResource("9_fclxd")]
+position = Vector2(2800, -500)
+
+[node name="gravity_portal_d2" parent="." instance=ExtResource("10_513vv")]
+position = Vector2(2900, -500)
+
+[node name="hop_orb" parent="." instance=ExtResource("11_6mk27")]
+position = Vector2(3200, -100)
+
+[node name="boost_orb" parent="." instance=ExtResource("12_wktwx")]
+position = Vector2(3450, -200)

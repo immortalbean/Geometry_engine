@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cayviuludy2g0"]
+
+[ext_resource type="Script" path="res://scripts/block.gd" id="1_hcidm"]
+[ext_resource type="Texture2D" uid="uid://cgv2i2swc23nd" path="res://art/blocks/blocks.png" id="2_quxjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmyfc"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_574dr"]
+size = Vector2(100, 100)
+
+[node name="block" type="StaticBody2D" groups=["block"]]
+script = ExtResource("1_hcidm")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("2_quxjb")
+hframes = 4
+vframes = 3
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rmyfc")
+one_way_collision = true
+
+[node name="hitbox2" type="CollisionShape2D" parent="."]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_rmyfc")
+disabled = true
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_574dr")
+debug_color = Color(0, 0, 1, 0.784314)

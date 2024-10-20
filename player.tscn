@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://7tyd7gqaypq7"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_g81vl"]
+[ext_resource type="Texture2D" uid="uid://br54u2pbu3mro" path="res://art/icons/icons.png" id="2_x4u5w"]
+[ext_resource type="AudioStream" uid="uid://q2bdboq4kvms" path="res://sfx/explode_11.ogg" id="3_evgf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpdge"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlp7m"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyfs6"]
+size = Vector2(25, 25)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c6skn"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_nvro0"]
+colors = PackedColorArray(0, 0.458824, 0.709804, 1, 0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody2D"]
+floor_constant_speed = true
+floor_snap_length = 5.0
+script = ExtResource("1_g81vl")
+
+[node name="rotating" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="rotating"]
+z_index = -1
+position = Vector2(3.8147e-06, -3.33786e-06)
+scale = Vector2(3.125, 3.125)
+texture = ExtResource("2_x4u5w")
+hframes = 2
+vframes = 2
+
+[node name="objectdetection" type="Area2D" parent="rotating"]
+collision_mask = 2
+monitorable = false
+
+[node name="hitbox" type="CollisionShape2D" parent="rotating/objectdetection"]
+shape = SubResource("RectangleShape2D_xpdge")
+debug_color = Color(0.992157, 0, 0, 0.392157)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_jlp7m")
+debug_color = Color(1, 0, 0, 0.784314)
+
+[node name="blockdetection" type="Area2D" parent="."]
+
+[node name="death" type="CollisionShape2D" parent="blockdetection"]
+shape = SubResource("RectangleShape2D_hyfs6")
+debug_color = Color(0, 0, 1, 0.784314)
+
+[node name="camera" type="Camera2D" parent="."]
+offset = Vector2(125, 0)
+zoom = Vector2(0.64, 0.64)
+limit_left = -50
+limit_bottom = 450
+limit_smoothed = true
+drag_vertical_enabled = true
+drag_top_margin = 0.3
+drag_bottom_margin = 0.3
+editor_draw_drag_margin = true
+
+[node name="death_timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_evgf8")
+
+[node name="particles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_c6skn")
+emitting = false
+amount = 30
+lifetime = 0.4
+one_shot = true
+randomness = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 750.0
+scale_amount_min = 25.0
+scale_amount_max = 25.0
+color_ramp = SubResource("Gradient_nvro0")
+
+[connection signal="area_entered" from="rotating/objectdetection" to="." method="_area_object"]
+[connection signal="area_exited" from="rotating/objectdetection" to="." method="_area_exit_object"]
+[connection signal="area_entered" from="blockdetection" to="." method="_area_on_crash"]
+[connection signal="timeout" from="death_timer" to="." method="_death_timeout"]

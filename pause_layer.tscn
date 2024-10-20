@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://chmcn4swq0jf2"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu_manager.gd" id="1_yuu8w"]
+[ext_resource type="Script" path="res://scripts/button_behavior/button.gd" id="2_2wnu2"]
+[ext_resource type="Texture2D" uid="uid://bmavm4o4xikhd" path="res://art/UI/button4.png" id="2_ir8i1"]
+[ext_resource type="Script" path="res://scripts/button_behavior/level_selector.gd" id="4_5ae5s"]
+[ext_resource type="Texture2D" uid="uid://hb6yeavhkbtf" path="res://art/UI/pause_buttons.png" id="5_mjnw7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lwdc"]
+size = Vector2(72, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm4mv"]
+size = Vector2(168, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_458i0"]
+size = Vector2(180, 180)
+
+[node name="pause_layer" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_yuu8w")
+
+[node name="pause" type="Area2D" parent="."]
+position = Vector2(1244, 36)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_2wnu2")
+has_shortcut = true
+shortcut = "escape"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pause"]
+shape = SubResource("RectangleShape2D_8lwdc")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="sprite" type="Sprite2D" parent="pause"]
+scale = Vector2(4, 4)
+texture = ExtResource("2_ir8i1")
+
+[node name="pause_menu" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="pause_menu"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="exit" type="Area2D" parent="pause_menu"]
+z_index = 1
+position = Vector2(875, 360)
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+script = ExtResource("4_5ae5s")
+scene = "res://scenes/level_select.tscn"
+
+[node name="sprite" type="Sprite2D" parent="pause_menu/exit"]
+scale = Vector2(6, 6)
+texture = ExtResource("5_mjnw7")
+hframes = 3
+frame = 1
+
+[node name="hitbox" type="CollisionShape2D" parent="pause_menu/exit"]
+shape = SubResource("RectangleShape2D_lm4mv")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="restart" type="Area2D" parent="pause_menu"]
+z_index = 1
+position = Vector2(405, 360)
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_2wnu2")
+
+[node name="sprite" type="Sprite2D" parent="pause_menu/restart"]
+scale = Vector2(6, 6)
+texture = ExtResource("5_mjnw7")
+hframes = 3
+frame = 2
+
+[node name="hitbox" type="CollisionShape2D" parent="pause_menu/restart"]
+shape = SubResource("RectangleShape2D_lm4mv")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="play" type="Area2D" parent="pause_menu"]
+z_index = 1
+position = Vector2(640, 360)
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_2wnu2")
+has_shortcut = true
+shortcut = "escape"
+
+[node name="sprite" type="Sprite2D" parent="pause_menu/play"]
+scale = Vector2(6, 6)
+texture = ExtResource("5_mjnw7")
+hframes = 3
+
+[node name="hitbox" type="CollisionShape2D" parent="pause_menu/play"]
+shape = SubResource("RectangleShape2D_458i0")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="pause_menu/restart" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="pause_menu/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="pause_menu/play" to="." method="_on_pause_pressed"]
